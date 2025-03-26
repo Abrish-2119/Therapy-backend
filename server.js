@@ -34,7 +34,7 @@ console.log("Auth Routes Type:", typeof authRoutes); // Should log: 'function'
 console.log("Counselor Routes Type:", typeof counselorRoutes); // Should log: 'function'
 console.log("Client Routes Type:", typeof clientRoutes); // Should log: 'function'
 console.log("Session Routes Type:", typeof sessionRoutes); // Should log: 'function'
-
+const adminRoutes = require("./routes/adminRoutes");
 app.use(apiLimiter);
 // Middleware to log incoming requests for debugging
 app.use((req, res, next) => {
@@ -55,7 +55,7 @@ app.use("/api/verification", verificationRoutes);
 app.use("/api/matches", matchingRoutes);
 app.use("/api/auth", authLimiter);
 app.use("/api/sessions", schedulingRoutes);
-
+app.use("/api/admin", adminRoutes);
 // Start the server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {

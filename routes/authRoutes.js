@@ -1,17 +1,27 @@
 const express = require("express");
 const {
-  signupCounselor,
-  signupClient,
+  signup,
   login,
+  adminSignup,
+  clientSignup,
+  counselorSignup,
+  switchRole,
 } = require("../controllers/authController");
-
 const router = express.Router();
 
-// Sign Up Routes
-router.post("/counselor/signup", signupCounselor); // Register counselor
-router.post("/client/signup", signupClient); // Register client
+// Regular user signup route
+router.post("/signup", signup);
 
-// Login Route
-router.post("/login", login); // Login route for both counselor and client
+// Client signup route (Separate logic for client signup)
+router.post("/client/signup", clientSignup);
 
+// Counselor signup route (Separate logic for counselor signup)
+router.post("/counselor/signup", counselorSignup);
+
+// Admin signup route (Separate logic for admin signup)
+router.post("/admin/signup", adminSignup);
+
+// Login route (login for client, counselor, admin)
+router.post("/login", login);
+router.patch("/role/switch", switchRole);
 module.exports = router;
